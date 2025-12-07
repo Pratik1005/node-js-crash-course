@@ -1,0 +1,31 @@
+import http from "http";
+
+const PORT = process.env.PORT;
+
+const server = http.createServer((req, res) => {
+  //   res.write("Hello world");
+  //   res.setHeader("Content-Type", "text/html");
+  //   res.setHeader("Content-Type", "text/plain");
+
+  //   res.statusCode = 404;
+  //   res.writeHead(500, {"Content-Type": "application/json"});
+  // res.writeHead(200, {"Content-Type": "text/html"});
+  // res.end("<h1>Hello world!</h1>");
+  //   res.end(JSON.stringify({message: "Server Error"}));
+
+  console.log(req.url);
+  console.log(req.method);
+
+  if (req.url === "/") {
+    res.writeHead(200, {"Content-Type": "text/html"});
+    res.end("<h1>Hello world!</h1>");
+  } else if (req.url === "/about") {
+    res.writeHead(200, {"Content-Type": "text/html"});
+    res.end("<h1>About</h1>");
+  } else {
+    res.writeHead(404, {"Content-Type": "text/html"});
+    res.end("<h1>Page Not Found!</h1>");
+  }
+});
+
+server.listen(PORT, () => console.log(`Running on port: ${PORT}`));
